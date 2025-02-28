@@ -1,66 +1,101 @@
-## Foundry
+# FundMe Smart Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A decentralized funding contract built with Solidity that allows users to send ETH and keeps track of funders. The contract ensures a minimum USD value for contributions using Chainlink Price Feeds.
 
-Foundry consists of:
+## Overview
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+The FundMe contract is a crowdfunding smart contract with the following features:
 
-## Documentation
+- Accepts ETH payments with a minimum USD value threshold
+- Tracks all funders and their contribution amounts
+- Only the owner can withdraw the collected funds
+- Uses Chainlink Price Feeds for accurate ETH/USD conversion
+- Supports multiple network deployments (Mainnet, Sepolia, Local)
 
-https://book.getfoundry.sh/
+## Contract Details
 
-## Usage
+### Key Features
+
+- Minimum funding amount: 5 USD
+- Automatic ETH/USD price conversion
+- Owner-only withdrawal function
+- Fallback and receive functions for direct ETH transfers
+- Gas-optimized storage variables
+
+### Smart Contracts
+
+- `FundMe.sol`: Main contract for handling funds
+- `PriceConverter.sol`: Library for ETH/USD price conversions
+- `HelperConfig.s.sol`: Network configuration management
+- `DeployFundMe.s.sol`: Deployment script
+
+## Getting Started
+
+### Prerequisites
+
+- [Foundry](https://book.getfoundry.sh/) installed on your machine
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+
+```shell
+forge install
+```
 
 ### Build
 
 ```shell
-$ forge build
+forge build
 ```
 
-### Test
+### Testing
+
+Run the full test suite:
 
 ```shell
-$ forge test
+forge test
 ```
 
-### Format
+Run tests with gas reporting:
 
 ```shell
-$ forge fmt
+forge test --gas-report
 ```
 
-### Gas Snapshots
+### Deployment
+
+Deploy to local network (Anvil):
 
 ```shell
-$ forge snapshot
+forge script script/DeployFundMe.s.sol --rpc-url http://localhost:8545 --private-key <your_private_key>
 ```
 
-### Anvil
+Deploy to Sepolia testnet:
 
 ```shell
-$ anvil
+forge script script/DeployFundMe.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast
 ```
 
-### Deploy
+## Network Configuration
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+The project supports multiple networks through the `HelperConfig.s.sol`:
 
-### Cast
+- Ethereum Mainnet
+- Sepolia Testnet
+- Local Anvil Chain (with automated mock deployment)
 
-```shell
-$ cast <subcommand>
-```
+## Testing
 
-### Help
+The test suite (`FundMeTest.t.sol`) includes:
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- Unit tests for funding operations
+- Withdrawal functionality tests
+- Owner-only access control tests
+- Multi-user funding scenarios
+- Price feed integration tests
+
+## License
+
+This project is licensed under the MIT License.
