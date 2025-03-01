@@ -137,7 +137,3 @@ The test suite (`FundMeTest.t.sol`) includes:
 - Owner-only access control tests
 - Multi-user funding scenarios
 - Price feed integration tests
-
-## License
-
-This project is licensed under the MIT License.
