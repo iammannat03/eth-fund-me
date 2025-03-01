@@ -50,6 +50,12 @@ forge install
 forge build
 ```
 
+Or using Make:
+
+```shell
+make build
+```
+
 ### Testing
 
 Run the full test suite:
@@ -63,6 +69,42 @@ Run tests with gas reporting:
 ```shell
 forge test --gas-report
 ```
+
+### Deployment & Interaction Commands
+
+The project includes several Make commands for easy deployment and interaction:
+
+#### Local Development (Anvil)
+
+```shell
+make anvil                    # Start local Anvil chain
+```
+
+On a separate terminal,
+
+```shell
+make deploy-anvil            # Deploy to Anvil
+make fund-fundMe-anvil      # Fund the contract on Anvil
+make withdraw-fundMe-anvil  # Withdraw from the contract on Anvil
+```
+
+#### Sepolia Testnet
+
+```shell
+make deploy-sepolia            # Deploy to Sepolia
+make fund-fundMe-sepolia      # Fund the contract on Sepolia
+make withdraw-fundMe-sepolia  # Withdraw from the contract on Sepolia
+```
+
+#### Mainnet
+
+```shell
+make deploy-mainnet            # Deploy to Mainnet
+make fund-fundMe-mainnet      # Fund the contract on Mainnet
+make withdraw-fundMe-mainnet  # Withdraw from the contract on Mainnet
+```
+
+Note: Make sure to set up your environment variables in `.env` file before using these commands.
 
 ### Deployment
 
