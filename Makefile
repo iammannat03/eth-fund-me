@@ -43,3 +43,15 @@ withdraw-fundMe-sepolia:
 withdraw-fundMe-mainnet:
 	forge script script/Interactions.s.sol:WithdrawFundMe --rpc-url $(MAINNET_RPC_URL) --private-key $(MAINNET_PRIVATE_KEY) --broadcast
 
+check-fundMe-anvil:
+	forge script script/Interactions.s.sol:CheckFundMe --rpc-url $(ANVIL_RPC_URL)
+
+check-fundMe-sepolia:
+	forge script script/Interactions.s.sol:CheckFundMe --rpc-url $(SEPOLIA_RPC_URL)
+
+check-fundMe-mainnet:
+	forge script script/Interactions.s.sol:CheckFundMe --rpc-url $(MAINNET_RPC_URL)
+
+demo-anvil:
+	forge script script/DemoFundMe.s.sol:DemoFundMe --rpc-url $(ANVIL_RPC_URL) --private-key $(ANVIL_PRIVATE_KEY) --broadcast
+
